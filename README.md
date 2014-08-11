@@ -1,9 +1,10 @@
 # Nano Hydrostatic Library
 
-## Feature
+## Features
 
 * Compute the *density* of solids made of [heterogeneous materials](https://en.wikipedia.org/wiki/Density)
 * Compute the *buoyancy* of heterogeneous solids fully immersed in [seawater](https://en.wikipedia.org/wiki/Seawater)
+* Packaged as OSGI bundle
 
 The library uses the [International System of Units](https://en.wikipedia.org/wiki/International_System_of_Units).
 The *buoyancy* and *mass* are expressed in `kg`, the *density* in `kg•m^-3`, the *volume* in `m^-3` and temperature in `°C`.
@@ -21,34 +22,47 @@ TBD
 
 ## Using the library
 
-Once the library is accessible in your classpath, you shall use the `SolidFactory` factory to build solids as required. 
+The library can be loaded directly in an OSGI container or used in a standalone application.
 
-The example below shows the creation of a solid composed of `1 m^3` with density `1000 kg•m^-3` and `0.1 m^3` with density `1500 kg•m^-3`.
+### OSGI container
+
+Once the bundle is activated, the service `SolidBuilderFactory` is registered and allows to create instances of `SolidBuilder`.
+
+### Standalone
+
+Once the library is accessible in the application classpath, an instance of `SolidBuilderFactoryImpl` must be created in order to create instances of `SolidBuilder`.
+
+The class `org.wildbits.hydro.sample.Sample` shows how to create a solid composed of `1 m^3` with density `1000 kg•m^-3` and `0.1 m^3` with density `1500 kg•m^-3` and compute its buoyancy in seawater with salinity of `0.08 kg/kg` at `20.5 °C`.
+
+The first step is to get a solid builder
 
 ```
-Solid<BigDecimal> solid = new SolidBuilder()
-    .add(big("1"), big("1000"))
-    .add(big("0.1"), big("1500"))
-    .build();
+SolidBuilderFactory sbf = new SolidBuilderFactoryImpl();
+SolidBuilder sb = sbf.getInstance();
 ```
 
-The mass and volume of this solid can be computed like the following:
+Then build the solid
 
 ```
-solid.mass();
-solid.volume();
+Solid<BigDecimal> solid = sb.add(big("1"), big("1000")).add(big("0.1"), big("1500")).build();
 ```
 
-In order to compute the buoyancy of the solid fully immersed in seawater at `20.5°C` with salinity `0.08 kg/kg`, the liquid model must be built as below:
+and the water model
 
 ```
 Liquid<BigDecimal> seaWater = SaltedLiquidFactory.build(big("0.08"));
 ```
 
-Then compute the buoyancy as below:
+finally the buoyancy and other hydrostatic properties can be computed as follow
 
 ```
-solid.buoyancy(seaWater.density(big("20.5")));
+BigDecimal mass = solid.mass();
+BigDecimal volume = solid.volume();
+BigDecimal density = solid.density(big("20.5"));
+BigDecimal waterDensity = seaWater.density(big("20.5"));
+BigDecimal buoyancy = (waterDensity != null) ? solid.buoyancy(waterDensity) : null;
 ```
+
+## Notes
 
 The library uses `java.math.BigDecimal` for its implementation, you may static import the method `org.wildbits.hydro.utils.Utils#big` as a syntactic sugar making building `BigDecimal` instances easy.
