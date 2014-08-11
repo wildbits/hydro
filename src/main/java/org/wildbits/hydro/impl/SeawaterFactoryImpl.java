@@ -19,24 +19,24 @@ import java.math.BigDecimal;
 
 import javax.annotation.Nonnull;
 
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Service;
 import org.wildbits.hydro.SaltedLiquid;
+import org.wildbits.hydro.SeawaterFactory;
 
 /**
- * Build {@link org.wildbits.hydro.SaltedLiquid} instances.
+ * Service to build {@link SaltedLiquid} instances.
  */
-public class SaltedLiquidFactory {
-
-    private SaltedLiquidFactory() {}
+@Service
+@Component(metatype = false)
+public class SeawaterFactoryImpl implements SeawaterFactory {
 
     /**
-     * @param salinity the liquid salinity in {@code kg/kg}.
-     * @return a new {@link org.wildbits.hydro.SaltedLiquid} instance.
-     * @throws IllegalArgumentException if the salinity is smaller than {@code 0}.
+     * {@inheritDoc}
      */
     @Nonnull
-    public static SaltedLiquid<BigDecimal> build(@Nonnull final BigDecimal salinity)
-            throws IllegalArgumentException {
+    @Override
+    public SaltedLiquid<BigDecimal> getInstance(@Nonnull BigDecimal salinity) {
         return new SeaWaterImpl(salinity);
     }
-
 }

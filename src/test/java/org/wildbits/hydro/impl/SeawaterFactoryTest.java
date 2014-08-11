@@ -19,20 +19,20 @@ import java.math.BigDecimal;
 
 import junit.framework.Assert;
 import org.junit.Test;
-import org.wildbits.hydro.Liquid;
+import org.wildbits.hydro.SaltedLiquid;
 
 import static org.wildbits.hydro.HydroUtils.big;
 
-public class SaltedLiquidFactoryTest {
+public class SeawaterFactoryTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testNull() throws Exception {
-        SaltedLiquidFactory.build(big("-10"));
+        new SeawaterFactoryImpl().getInstance(big("-10"));
     }
 
     @Test
     public void testBuild() throws Exception {
-        Liquid<BigDecimal> liquid = SaltedLiquidFactory.build(big("0.08"));
+        SaltedLiquid<BigDecimal> liquid = new SeawaterFactoryImpl().getInstance(big("0.08"));
         Assert.assertNotNull(liquid);
     }
 }

@@ -36,6 +36,7 @@ public class SolidBuilderImpl implements SolidBuilder {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
     public SolidBuilderImpl add(@Nonnull final BigDecimal volume, @Nonnull final BigDecimal mass) {
         solids.add(new HomogeneousSolid(volume, mass));
@@ -45,6 +46,7 @@ public class SolidBuilderImpl implements SolidBuilder {
     /**
      * {@inheritDoc}
      */
+    @Nonnull
     @Override
     public Solid<BigDecimal> build()
             throws IllegalArgumentException {

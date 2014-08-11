@@ -13,28 +13,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wildbits.hydro.impl;
+package org.wildbits.hydro;
+
+import java.math.BigDecimal;
 
 import javax.annotation.Nonnull;
 
-import org.apache.felix.scr.annotations.Component;
-import org.apache.felix.scr.annotations.Service;
-import org.wildbits.hydro.SolidBuilder;
-import org.wildbits.hydro.SolidBuilderFactory;
-
 /**
- * Service to build {@code SolidBuilder} instances.
+ * The {@code SeawaterFactory} allows to build seawater instances of {@code SaltedLiquid}.
  */
-@Service
-@Component(metatype = false)
-public class SolidBuilderFactoryImpl implements SolidBuilderFactory {
+public interface SeawaterFactory {
 
     /**
-     * {@inheritDoc}
+     * @param salinity the seawater salinity in {@code kg/kg}.
+     * @return a new {@link org.wildbits.hydro.SaltedLiquid} instance.
+     * @throws IllegalArgumentException if the salinity is invalid.
      */
     @Nonnull
-    @Override
-    public SolidBuilder getInstance() {
-        return new SolidBuilderImpl();
-    }
+    SaltedLiquid getInstance(@Nonnull BigDecimal salinity)
+            throws IllegalArgumentException;
+
 }

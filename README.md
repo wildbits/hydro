@@ -26,34 +26,30 @@ The library can be loaded directly in an OSGI container or used in a standalone 
 
 ### OSGI container
 
-Once the bundle is activated, the service `SolidBuilderFactory` is registered and allows to create instances of `SolidBuilder`.
+Once the bundle is activated, the service following services are registrered
+
+* `SolidBuilderFactory` which allows to create instances of `SolidBuilder`
+* `SeawaterFactory` which allows to create sea water instances of `SaltedLiquid` 
 
 ### Standalone
 
-Once the library is accessible in the application classpath, an instance of `SolidBuilderFactoryImpl` must be created in order to create instances of `SolidBuilder`.
+Once the library is accessible in the application classpath, the implementation classes `SeaWaterImpl` and `SolidBuilderImpl` shall be instanciated directly.
 
-The class `org.wildbits.hydro.sample.Sample` shows how to create a solid composed of `1 m^3` with density `1000 kg•m^-3` and `0.1 m^3` with density `1500 kg•m^-3` and compute its buoyancy in seawater with salinity of `0.08 kg/kg` at `20.5 °C`.
+The class `org.wildbits.hydro.sample.Sample` illustrates how to create a solid composed of `1 m^3` with density `1000 kg•m^-3` and `0.1 m^3` with density `1500 kg•m^-3` and compute its buoyancy in seawater with salinity of `0.08 kg/kg` at `20.5 °C`.
 
-The first step is to get a solid builder
-
-```
-SolidBuilderFactory sbf = new SolidBuilderFactoryImpl();
-SolidBuilder sb = sbf.getInstance();
-```
-
-Then build the solid
+The first step is to build the solid
 
 ```
-Solid<BigDecimal> solid = sb.add(big("1"), big("1000")).add(big("0.1"), big("1500")).build();
+Solid<BigDecimal> solid = new SolidBuilderImpl().add(big("1"), big("1000")).add(big("0.1"), big("1500")).build();
 ```
 
-and the water model
+Then build the seawater model
 
 ```
-Liquid<BigDecimal> seaWater = SaltedLiquidFactory.build(big("0.08"));
+Liquid<BigDecimal> seaWater = new SeaWaterImpl(big("0.08"));
 ```
 
-finally the buoyancy and other hydrostatic properties can be computed as follow
+Finally the buoyancy and other hydrostatic properties can be computed as follow
 
 ```
 BigDecimal mass = solid.mass();

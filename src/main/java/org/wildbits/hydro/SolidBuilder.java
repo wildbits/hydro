@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 import javax.annotation.Nonnull;
 
 /**
- * The {@code SolidBuilderImpl} provides an API to build {@code Solid} instances.
+ * The {@code SolidBuilder} allows to build {@code Solid} instances.
  */
 public interface SolidBuilder {
 
@@ -30,12 +30,14 @@ public interface SolidBuilder {
      * @param mass the mass to add in {@code kg}
      * @return {@code this}
      */
+    @Nonnull
     SolidBuilder add(@Nonnull BigDecimal volume, @Nonnull BigDecimal mass);
 
     /**
      * @return a new {@link org.wildbits.hydro.Solid} instance containing the added volumes/masses.
      * @throws IllegalArgumentException if no volume/mass has been added
      */
+    @Nonnull
     Solid<BigDecimal> build() throws IllegalArgumentException;
 
 }

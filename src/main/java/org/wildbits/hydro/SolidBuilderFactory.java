@@ -15,14 +15,17 @@
  */
 package org.wildbits.hydro;
 
+import javax.annotation.Nonnull;
+
 /**
- * The {@code SolidBuilderFactory} allows to build instances of {@code SolidBuilderImpl}.
+ * The {@code SolidBuilderFactory} allows to build instances of {@code SolidBuilder}.
  */
 public interface SolidBuilderFactory {
 
     /**
-     * @return a new instance of {@code SolidBuilderImpl}
+     * @return a new instance of {@code SolidBuilder}
      */
+    @Nonnull
     SolidBuilder getInstance();
 
 }
