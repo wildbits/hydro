@@ -29,7 +29,7 @@ import static org.wildbits.hydro.HydroUtils.big;
  * correlations and data, Eq. 8. The paper is available on
  * <a href="http://hdl.handle.net/1721.1/69157">MIT Open Access</a>.
  */
-public class SeaWaterImpl implements SaltedLiquid<BigDecimal> {
+public class SeawaterImpl implements SaltedLiquid<BigDecimal> {
 
     /**
      * The minimum temperature in {@code °C} for which the salt water density is defined by the implementation.
@@ -73,7 +73,7 @@ public class SeaWaterImpl implements SaltedLiquid<BigDecimal> {
     /**
      * @param salinity the water salinity in {@code kg/kg}. Fresh water has salinity of {@code 0 kg/kg}.
      */
-    public SeaWaterImpl(@Nonnull final BigDecimal salinity) {
+    public SeawaterImpl(@Nonnull final BigDecimal salinity) {
         if (salinity.signum() < 0) {
             throw new IllegalArgumentException("salinity can't be negative");
         }

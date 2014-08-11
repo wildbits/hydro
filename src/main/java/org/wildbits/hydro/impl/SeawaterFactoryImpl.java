@@ -37,6 +37,6 @@ public class SeawaterFactoryImpl implements SeawaterFactory {
     @Nonnull
     @Override
     public SaltedLiquid<BigDecimal> getInstance(@Nonnull BigDecimal salinity) {
-        return new SeaWaterImpl(salinity);
+        return new SeawaterImpl(salinity);
     }
 }

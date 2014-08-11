@@ -23,14 +23,14 @@ import org.wildbits.hydro.Density;
 
 import static org.wildbits.hydro.HydroUtils.big;
 
-public class SeaWaterTest {
+public class SeawaterTest {
 
     private static final double DELTA = 0.001;
 
     @Test
     @SuppressWarnings("ConstantConditions")
     public void testDensity() throws Exception {
-        Density<BigDecimal> densityZeroSalinity = new SeaWaterImpl(big("0.0"));
+        Density<BigDecimal> densityZeroSalinity = new SeawaterImpl(big("0.0"));
         Assert.assertEquals(999.9, densityZeroSalinity.density(big("0.0")).doubleValue(), DELTA);
         Assert.assertEquals(999.5093443, densityZeroSalinity.density(big("10.0")).doubleValue(), DELTA);
         Assert.assertEquals(998.0154288, densityZeroSalinity.density(big("20.0")).doubleValue(), DELTA);
@@ -45,7 +45,7 @@ public class SeaWaterTest {
         Assert.assertEquals(950.8527963, densityZeroSalinity.density(big("110.0")).doubleValue(), DELTA);
         Assert.assertEquals(943.0213248, densityZeroSalinity.density(big("120.0")).doubleValue(), DELTA);
 
-        Density<BigDecimal> densityMidSalinity = new SeaWaterImpl(big("0.08"));
+        Density<BigDecimal> densityMidSalinity = new SeawaterImpl(big("0.08"));
         Assert.assertEquals(1064.06, densityMidSalinity.density(big("0.0")).doubleValue(), DELTA);
         Assert.assertEquals(1062.2, densityMidSalinity.density(big("10.0")).doubleValue(), DELTA);
         Assert.assertEquals(1059.4908435072, densityMidSalinity.density(big("20.0")).doubleValue(), DELTA);
@@ -64,19 +64,19 @@ public class SeaWaterTest {
     @Test
     public void testSalinityOutOfRange() {
         BigDecimal validTemperature = big("20.0");
-        Density<BigDecimal> salinityTooHigh = new SeaWaterImpl(big("0.2"));
+        Density<BigDecimal> salinityTooHigh = new SeawaterImpl(big("0.2"));
         Assert.assertNull(salinityTooHigh.density(validTemperature));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testNegativeSalinity() {
-        new SeaWaterImpl(big("-1.0"));
+        new SeawaterImpl(big("-1.0"));
     }
 
     @Test
     public void testTemperatureOutOfRange() {
         BigDecimal validSalinity = big("0.1");
-        Density<BigDecimal> density = new SeaWaterImpl(validSalinity);
+        Density<BigDecimal> density = new SeawaterImpl(validSalinity);
         Assert.assertNull(density.density(big("-0.50")));
         Assert.assertNull(density.density(big("185.0")));
     }

@@ -19,7 +19,7 @@ import java.math.BigDecimal;
 
 import org.wildbits.hydro.Liquid;
 import org.wildbits.hydro.Solid;
-import org.wildbits.hydro.impl.SeaWaterImpl;
+import org.wildbits.hydro.impl.SeawaterImpl;
 import org.wildbits.hydro.impl.SolidBuilderImpl;
 
 import static org.wildbits.hydro.HydroUtils.big;
@@ -32,7 +32,7 @@ public class Sample {
         Solid<BigDecimal> solid = new SolidBuilderImpl().add(big("1"), big("1000")).add(big("0.1"), big("1500")).build();
 
         // build water model with salinity 0.08 kg/kg
-        Liquid<BigDecimal> seaWater = new SeaWaterImpl(big("0.08"));
+        Liquid<BigDecimal> seaWater = new SeawaterImpl(big("0.08"));
 
         // compute solid mass in kg
         BigDecimal mass = solid.mass();
