@@ -30,7 +30,7 @@ public interface SeawaterFactory {
      * @throws IllegalArgumentException if the salinity is invalid.
      */
     @Nonnull
-    SaltedLiquid getInstance(@Nonnull BigDecimal salinity)
+    SaltedLiquid<BigDecimal> getInstance(@Nonnull BigDecimal salinity)
             throws IllegalArgumentException;
 
 }
