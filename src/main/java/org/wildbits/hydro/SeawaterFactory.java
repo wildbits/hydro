@@ -15,14 +15,12 @@
  */
 package org.wildbits.hydro;
 
-import java.math.BigDecimal;
-
 import javax.annotation.Nonnull;
 
 /**
  * The {@code SeawaterFactory} allows to build seawater instances of {@code SaltedLiquid}.
  */
-public interface SeawaterFactory {
+public interface SeawaterFactory<T> {
 
     /**
      * @param salinity the seawater salinity in {@code kg/kg}.
@@ -30,7 +28,7 @@ public interface SeawaterFactory {
      * @throws IllegalArgumentException if the salinity is invalid.
      */
     @Nonnull
-    SaltedLiquid<BigDecimal> getInstance(@Nonnull BigDecimal salinity)
+    SaltedLiquid<T> getInstance(@Nonnull T salinity)
             throws IllegalArgumentException;
 
 }

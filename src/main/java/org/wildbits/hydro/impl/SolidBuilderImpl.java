@@ -27,7 +27,7 @@ import org.wildbits.hydro.SolidBuilder;
 /**
  * Builder for {@link Solid} instances.
  */
-public class SolidBuilderImpl implements SolidBuilder {
+public class SolidBuilderImpl implements SolidBuilder<BigDecimal> {
 
     private final List<Solid<BigDecimal>> solids = new ArrayList<Solid<BigDecimal>>();
 

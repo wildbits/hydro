@@ -15,6 +15,8 @@
  */
 package org.wildbits.hydro.impl;
 
+import java.math.BigDecimal;
+
 import javax.annotation.Nonnull;
 
 import org.apache.felix.scr.annotations.Component;
@@ -27,14 +29,14 @@ import org.wildbits.hydro.SolidBuilderFactory;
  */
 @Service
 @Component(metatype = false)
-public class SolidBuilderFactoryImpl implements SolidBuilderFactory {
+public class SolidBuilderFactoryImpl implements SolidBuilderFactory<BigDecimal> {
 
     /**
      * {@inheritDoc}
      */
     @Nonnull
     @Override
-    public SolidBuilder getInstance() {
+    public SolidBuilder<BigDecimal> getInstance() {
         return new SolidBuilderImpl();
     }
 }

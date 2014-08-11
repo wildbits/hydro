@@ -29,7 +29,7 @@ import org.wildbits.hydro.SeawaterFactory;
  */
 @Service
 @Component(metatype = false)
-public class SeawaterFactoryImpl implements SeawaterFactory {
+public class SeawaterFactoryImpl implements SeawaterFactory<BigDecimal> {
 
     /**
      * {@inheritDoc}

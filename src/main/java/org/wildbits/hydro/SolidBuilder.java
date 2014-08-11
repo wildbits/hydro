@@ -15,14 +15,12 @@
  */
 package org.wildbits.hydro;
 
-import java.math.BigDecimal;
-
 import javax.annotation.Nonnull;
 
 /**
  * The {@code SolidBuilder} allows to build {@code Solid} instances.
  */
-public interface SolidBuilder {
+public interface SolidBuilder<T> {
 
     /**
      * Add a volume/mass pair to the solid being built.
@@ -31,13 +29,13 @@ public interface SolidBuilder {
      * @return {@code this}
      */
     @Nonnull
-    SolidBuilder add(@Nonnull BigDecimal volume, @Nonnull BigDecimal mass);
+    SolidBuilder<T> add(@Nonnull T volume, @Nonnull T mass);
 
     /**
      * @return a new {@link org.wildbits.hydro.Solid} instance containing the added volumes/masses.
      * @throws IllegalArgumentException if no volume/mass has been added
      */
     @Nonnull
-    Solid<BigDecimal> build() throws IllegalArgumentException;
+    Solid<T> build() throws IllegalArgumentException;
 
 }
