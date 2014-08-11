@@ -13,26 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wildbits.hydro.builder;
+package org.wildbits.hydro;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import org.wildbits.hydro.Solid;
-import org.wildbits.hydro.impl.CompositeSolid;
-import org.wildbits.hydro.impl.HomogeneousSolid;
-
 /**
- * Builder for {@link Solid} instances.
+ * The {@code SolidBuilderImpl} provides an API to build {@code Solid} instances.
  */
-public class SolidBuilder {
-
-    private final List<Solid<BigDecimal>> solids = new ArrayList<Solid<BigDecimal>>();
-
-    public SolidBuilder() {}
+public interface SolidBuilder {
 
     /**
      * Add a volume/mass pair to the solid being built.
@@ -40,22 +30,12 @@ public class SolidBuilder {
      * @param mass the mass to add in {@code kg}
      * @return {@code this}
      */
-    public SolidBuilder add(@Nonnull final BigDecimal volume, @Nonnull final BigDecimal mass) {
-        solids.add(new HomogeneousSolid(volume, mass));
-        return this;
-    }
+    SolidBuilder add(@Nonnull BigDecimal volume, @Nonnull BigDecimal mass);
 
     /**
      * @return a new {@link org.wildbits.hydro.Solid} instance containing the added volumes/masses.
      * @throws IllegalArgumentException if no volume/mass has been added
      */
-    public Solid<BigDecimal> build()
-            throws IllegalArgumentException {
-        int size = solids.size();
-        if (size == 0) {
-            throw new IllegalArgumentException("no volume/mass pair is defined");
-        }
-        return solids.size() == 1 ? solids.get(0) : new CompositeSolid(solids);
-    }
+    Solid<BigDecimal> build() throws IllegalArgumentException;
 
 }

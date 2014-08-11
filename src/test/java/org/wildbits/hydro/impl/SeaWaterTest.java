@@ -21,7 +21,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.wildbits.hydro.Density;
 
-import static org.wildbits.hydro.utils.Utils.big;
+import static org.wildbits.hydro.HydroUtils.big;
 
 public class SeaWaterTest {
 

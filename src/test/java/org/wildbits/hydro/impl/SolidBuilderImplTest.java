@@ -13,34 +13,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wildbits.hydro.builder;
+package org.wildbits.hydro.impl;
 
 import java.math.BigDecimal;
 
 import junit.framework.Assert;
 import org.junit.Test;
 import org.wildbits.hydro.Solid;
-import org.wildbits.hydro.impl.CompositeSolid;
-import org.wildbits.hydro.impl.HomogeneousSolid;
 
-import static org.wildbits.hydro.utils.Utils.big;
+import static org.wildbits.hydro.HydroUtils.big;
 
-public class SolidBuilderTest {
+public class SolidBuilderImplTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testEmpty() throws Exception {
-        new SolidBuilder().build();
+        new SolidBuilderImpl().build();
     }
 
     @Test
     public void testBuildHomogeneousSolid() throws Exception {
-        Solid<BigDecimal> solid = new SolidBuilder().add(big("30"), big("40")).build();
+        Solid<BigDecimal> solid = new SolidBuilderImpl().add(big("30"), big("40")).build();
         Assert.assertTrue(solid instanceof HomogeneousSolid);
     }
 
     @Test
     public void testBuildCompositeSolid() throws Exception {
-        Solid<BigDecimal> solid = new SolidBuilder()
+        Solid<BigDecimal> solid = new SolidBuilderImpl()
                 .add(big("30"), big("40"))
                 .add(big("50"), big("60")).build();
         Assert.assertTrue(solid instanceof CompositeSolid);

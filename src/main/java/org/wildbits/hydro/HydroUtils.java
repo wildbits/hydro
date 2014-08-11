@@ -13,14 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * API - org.wildbits.hydro
- *
- * @version 1.0.0
- */
-@Version("1.0.0")
-@Export(optional = "provide:=true")
 package org.wildbits.hydro;
 
-import aQute.bnd.annotation.Version;
-import aQute.bnd.annotation.Export;
+import java.math.BigDecimal;
+
+public class HydroUtils {
+
+    /**
+     * Static method to offer a syntactic sugar for building {@link BigDecimal} instances.
+     * @param value String representation of BigDecimal
+     * @throws NumberFormatException if val is not a valid representation of a BigDecimal
+     * {@see http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)}
+     */
+    public static BigDecimal big(final String value) {
+        return new BigDecimal(value);
+    }
+
+}

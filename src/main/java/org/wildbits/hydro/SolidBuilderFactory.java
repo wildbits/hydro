@@ -13,14 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- * API - org.wildbits.hydro
- *
- * @version 1.0.0
- */
-@Version("1.0.0")
-@Export(optional = "provide:=true")
 package org.wildbits.hydro;
 
-import aQute.bnd.annotation.Version;
-import aQute.bnd.annotation.Export;
+/**
+ * The {@code SolidBuilderFactory} allows to build instances of {@code SolidBuilderImpl}.
+ */
+public interface SolidBuilderFactory {
+
+    /**
+     * @return a new instance of {@code SolidBuilderImpl}
+     */
+    SolidBuilder getInstance();
+
+}

@@ -22,7 +22,7 @@ import javax.annotation.Nullable;
 
 import org.wildbits.hydro.SaltedLiquid;
 
-import static org.wildbits.hydro.utils.Utils.big;
+import static org.wildbits.hydro.HydroUtils.big;
 
 /**
  * Salt Water Density model as defined in paper: The thermophysical properties of seawater: A review of existing

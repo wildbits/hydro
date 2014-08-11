@@ -23,7 +23,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.wildbits.hydro.Solid;
 
-import static org.wildbits.hydro.utils.Utils.big;
+import static org.wildbits.hydro.HydroUtils.big;
 
 public class CompositeSolidTest {
 

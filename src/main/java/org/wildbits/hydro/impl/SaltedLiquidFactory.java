@@ -13,14 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wildbits.hydro.builder;
+package org.wildbits.hydro.impl;
 
 import java.math.BigDecimal;
 
 import javax.annotation.Nonnull;
 
 import org.wildbits.hydro.SaltedLiquid;
-import org.wildbits.hydro.impl.SeaWaterImpl;
 
 /**
  * Build {@link org.wildbits.hydro.SaltedLiquid} instances.

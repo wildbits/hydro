@@ -13,20 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.wildbits.hydro.utils;
+package org.wildbits.hydro.impl;
 
-import java.math.BigDecimal;
+import org.apache.felix.scr.annotations.Component;
+import org.apache.felix.scr.annotations.Service;
+import org.wildbits.hydro.SolidBuilder;
+import org.wildbits.hydro.SolidBuilderFactory;
 
-public class Utils {
+/**
+ * Service to build {@code SolidBuilder} instances.
+ */
+@Service
+@Component(metatype = false)
+public class SolidBuilderFactoryImpl implements SolidBuilderFactory {
 
     /**
-     * Static method to offer a syntactic sugar for building {@link BigDecimal} instances.
-     * @param value String representation of BigDecimal
-     * @throws NumberFormatException if val is not a valid representation of a BigDecimal
-     * {@see http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)}
+     * {@inheritDoc}
      */
-    public static BigDecimal big(final String value) {
-        return new BigDecimal(value);
+    @Override
+    public SolidBuilder getInstance() {
+        return new SolidBuilderImpl();
     }
-
 }

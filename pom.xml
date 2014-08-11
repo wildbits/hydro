@@ -4,16 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- PROJECT DEFINITION -->
     <groupId>org.wildbits</groupId>
     <artifactId>org.wildbits.hydro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>bundle</packaging>
     <name>Wildbits Hydrostatic Library</name>
     <description>A nano hydrostatic library</description>
     <url>https://github.com/wildbits/hydro/blob/master/README.md</url>
 
-    <!-- PROJECT LICENSES -->
     <licenses>
         <license>
             <name>The Apache License, Version 2.0</name>
@@ -21,7 +19,6 @@
         </license>
     </licenses>
 
-    <!-- PROJECT DEVELOPERS -->
     <developers>
         <developer>
             <name>T. Maret</name>
@@ -31,14 +28,42 @@
         </developer>
     </developers>
 
-    <!-- PROJECT SCM -->
     <scm>
         <connection>scm:git:git@github.com:wildbits/hydro.git</connection>
         <developerConnection>scm:git:git@github.com:wildbits/hydro.git</developerConnection>
         <url>git@github.com:wildbits/hydro.git</url>
     </scm>
 
-    <!-- PROJECT DEPENDENCIES -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <version>1.9.0</version>
+                <executions>
+                    <execution>
+                        <id>generate-scr-scrdescriptor</id>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-Category>wildbits/hydro</Bundle-Category>
+                        <Export-Package>org.wildbits.hydro</Export-Package>
+                        <Private-Package>org.wildbits.hydro.*</Private-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -46,7 +71,24 @@
             <version>2.0.0</version>
             <scope>provided</scope>
         </dependency>
-        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.annotations</artifactId>
+            <version>1.9.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>biz.aQute</groupId>
+            <artifactId>bndlib</artifactId>
+            <version>1.43.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.osgi</groupId>
+            <artifactId>org.osgi.core</artifactId>
+            <version>4.2.0</version>
+        </dependency>
+        <!-- test -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
