@@ -1,5 +1,5 @@
 /**
- * Copyright T. Maret (timothee.maret@gmail.com)
+ * Copyright wildbits org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,6 +24,10 @@ import org.wildbits.hydro.impl.SolidBuilderImpl;
 
 import static org.wildbits.data.Utils.big;
 
+/**
+ * Sample class using the api to compute the mass, volume, density, buoyancy of a solid.
+ * The details are available in the source code.
+ */
 public class Sample {
 
     public static void main(String[] args) {

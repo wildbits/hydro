@@ -1,5 +1,5 @@
 /**
- * Copyright T. Maret (timothee.maret@gmail.com)
+ * Copyright wildbits org
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,9 @@ package org.wildbits.hydro;
 
 import javax.annotation.Nonnull;
 
+/**
+ * A salted liquid represented by its hydrostatic characteristics.
+ */
 public interface SaltedLiquid<T> extends Liquid<T> {
 
     /**
