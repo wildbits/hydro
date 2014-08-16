@@ -29,6 +29,6 @@ public interface Density<T> {
      * @return the density in {@code kg•m^-3} or {@code null} if undefined.
      */
     @Nullable
-    T density(@Nonnull T temperature);
+    T density(@Nonnull Number temperature);
 
 }

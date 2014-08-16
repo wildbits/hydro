@@ -29,7 +29,7 @@ public interface SolidBuilder<T> {
      * @return {@code this}
      */
     @Nonnull
-    SolidBuilder<T> add(@Nonnull T volume, @Nonnull T mass);
+    SolidBuilder<T> add(@Nonnull Number volume, @Nonnull Number mass);
 
     /**
      * @return a new {@link org.wildbits.hydro.Solid} instance containing the added volumes/masses.

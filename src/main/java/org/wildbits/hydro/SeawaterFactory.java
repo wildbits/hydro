@@ -28,7 +28,7 @@ public interface SeawaterFactory<T> {
      * @throws IllegalArgumentException if the salinity is invalid.
      */
     @Nonnull
-    SaltedLiquid<T> getInstance(@Nonnull T salinity)
+    SaltedLiquid<T> getInstance(@Nonnull Number salinity)
             throws IllegalArgumentException;
 
 }

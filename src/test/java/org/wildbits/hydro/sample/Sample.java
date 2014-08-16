@@ -22,7 +22,7 @@ import org.wildbits.hydro.Solid;
 import org.wildbits.hydro.impl.SeawaterImpl;
 import org.wildbits.hydro.impl.SolidBuilderImpl;
 
-import static org.wildbits.hydro.HydroUtils.big;
+import static org.wildbits.data.Utils.big;
 
 public class Sample {
 

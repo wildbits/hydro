@@ -23,6 +23,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.wildbits.data.Utils;
 import org.wildbits.hydro.Solid;
 
 /**
@@ -72,7 +73,7 @@ public class CompositeSolid implements Solid<BigDecimal> {
      */
     @Override
     @Nullable
-    public BigDecimal density(@Nonnull BigDecimal temperature) {
+    public BigDecimal density(@Nonnull Number temperature) {
         BigDecimal σm = mass();
         BigDecimal ρ = BigDecimal.ZERO;
         for (Solid<BigDecimal> solid : solids) {
@@ -86,7 +87,7 @@ public class CompositeSolid implements Solid<BigDecimal> {
      */
     @Override
     @Nullable
-    public BigDecimal buoyancy(@Nonnull BigDecimal ρ) {
-        return ρ.multiply(volume()).subtract(mass(), MC);
+    public BigDecimal buoyancy(@Nonnull Number ρ) {
+        return Utils.big(ρ).multiply(volume()).subtract(mass(), MC);
     }
 }

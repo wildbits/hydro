@@ -30,6 +30,6 @@ public interface Buoyancy<T> {
      *         A positive resulting buoyancy indicates the solid is positively buoyant.
      */
     @Nullable
-    T buoyancy(@Nonnull T ρ);
+    T buoyancy(@Nonnull Number ρ);
 
 }

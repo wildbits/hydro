@@ -38,7 +38,7 @@ public class SolidBuilderImpl implements SolidBuilder<BigDecimal> {
      */
     @Nonnull
     @Override
-    public SolidBuilderImpl add(@Nonnull final BigDecimal volume, @Nonnull final BigDecimal mass) {
+    public SolidBuilderImpl add(@Nonnull final Number volume, @Nonnull final Number mass) {
         solids.add(new HomogeneousSolid(volume, mass));
         return this;
     }

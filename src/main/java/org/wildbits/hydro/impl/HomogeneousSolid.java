@@ -21,6 +21,7 @@ import java.math.MathContext;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.wildbits.data.Utils;
 import org.wildbits.hydro.Solid;
 
 /**
@@ -38,9 +39,9 @@ public class HomogeneousSolid implements Solid<BigDecimal> {
      * @param volume in {@code m^-3}
      * @param mass in {@code kg}
      */
-    public HomogeneousSolid(@Nonnull final BigDecimal volume, @Nonnull final BigDecimal mass) {
-        this.volume = volume;
-        this.mass = mass;
+    public HomogeneousSolid(@Nonnull final Number volume, @Nonnull final Number mass) {
+        this.volume = Utils.big(volume);
+        this.mass = Utils.big(mass);
     }
 
     /**
@@ -66,7 +67,7 @@ public class HomogeneousSolid implements Solid<BigDecimal> {
      */
     @Override
     @Nullable
-    public BigDecimal density(@Nonnull BigDecimal temperature) {
+    public BigDecimal density(@Nonnull Number temperature) {
         return mass.divide(volume, MC);
     }
 
@@ -75,7 +76,7 @@ public class HomogeneousSolid implements Solid<BigDecimal> {
      */
     @Override
     @Nullable
-    public BigDecimal buoyancy(@Nonnull BigDecimal ρ) {
-        return ρ.multiply(volume).subtract(mass, MC);
+    public BigDecimal buoyancy(@Nonnull Number ρ) {
+        return Utils.big(ρ).multiply(volume).subtract(mass, MC);
     }
 }

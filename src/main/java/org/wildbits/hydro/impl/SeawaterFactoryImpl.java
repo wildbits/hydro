@@ -21,6 +21,7 @@ import javax.annotation.Nonnull;
 
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Service;
+import org.wildbits.data.Utils;
 import org.wildbits.hydro.SaltedLiquid;
 import org.wildbits.hydro.SeawaterFactory;
 
@@ -36,7 +37,7 @@ public class SeawaterFactoryImpl implements SeawaterFactory<BigDecimal> {
      */
     @Nonnull
     @Override
-    public SaltedLiquid<BigDecimal> getInstance(@Nonnull BigDecimal salinity) {
-        return new SeawaterImpl(salinity);
+    public SaltedLiquid<BigDecimal> getInstance(@Nonnull Number salinity) {
+        return new SeawaterImpl(Utils.big(salinity));
     }
 }

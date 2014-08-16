@@ -21,7 +21,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.wildbits.hydro.Solid;
 
-import static org.wildbits.hydro.HydroUtils.big;
+import static org.wildbits.data.Utils.big;
 
 public class SolidBuilderImplTest {
 

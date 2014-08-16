@@ -20,9 +20,10 @@ import java.math.BigDecimal;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import org.wildbits.data.Utils;
 import org.wildbits.hydro.SaltedLiquid;
 
-import static org.wildbits.hydro.HydroUtils.big;
+import static org.wildbits.data.Utils.big;
 
 /**
  * Salt Water Density model as defined in paper: The thermophysical properties of seawater: A review of existing
@@ -73,11 +74,12 @@ public class SeawaterImpl implements SaltedLiquid<BigDecimal> {
     /**
      * @param salinity the water salinity in {@code kg/kg}. Fresh water has salinity of {@code 0 kg/kg}.
      */
-    public SeawaterImpl(@Nonnull final BigDecimal salinity) {
-        if (salinity.signum() < 0) {
+    public SeawaterImpl(@Nonnull final Number salinity) {
+        final BigDecimal big = Utils.big(salinity);
+        if (big.signum() < 0) {
             throw new IllegalArgumentException("salinity can't be negative");
         }
-        this.salinity = salinity;
+        this.salinity = big;
     }
 
     /**
@@ -85,9 +87,10 @@ public class SeawaterImpl implements SaltedLiquid<BigDecimal> {
      */
     @Override
     @Nullable
-    public BigDecimal density(@Nonnull BigDecimal temperature) {
-        if (validSalinity() && validTemperature(temperature)) {
-            final BigDecimal t1 = temperature, t2 = t1.pow(2), t3 = t1.pow(3), t4 = t1.pow(4);
+    public BigDecimal density(@Nonnull Number temperature) {
+        final BigDecimal t1 = Utils.big(temperature);
+        if (validSalinity() && validTemperature(t1)) {
+            final BigDecimal t2 = t1.pow(2), t3 = t1.pow(3), t4 = t1.pow(4);
             final BigDecimal s1 = salinity, s2 = s1.pow(2);
             return A1.add(A2.multiply(t1))
                     .add(A3.multiply(t2))
