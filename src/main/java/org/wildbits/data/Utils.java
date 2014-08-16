@@ -33,7 +33,7 @@ public class Utils {
      * @return the {@link BigDecimal} instance
      */
     @Nonnull
-    public static BigDecimal big(@Nonnull Number number) {
+    public static BigDecimal big(@Nonnull final Number number) {
         return number instanceof BigDecimal ? (BigDecimal) number : new BigDecimal(number.toString());
     }
 
@@ -44,7 +44,8 @@ public class Utils {
      * @throws NumberFormatException if val is not a valid representation of a {@link BigDecimal}
      * {@see http://docs.oracle.com/javase/7/docs/api/java/math/BigDecimal.html#BigDecimal(java.lang.String)}
      */
-    public static BigDecimal big(final String value) {
+    @Nonnull
+    public static BigDecimal big(@Nonnull final String value) {
         return new BigDecimal(value);
     }
 
