@@ -18,7 +18,17 @@ The model is valid for a temperature range `0 < t < 180 °C` and salinity range 
 
 ## Getting the library
 
-TBD
+The latest release is `1.0.0` and can be embeded in our project either via maven
+
+```
+<dependency>
+  <groupId>org.wildbits</groupId>
+  <artifactId>org.wildbits.hydro</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+or by downloading the bundle from [org.wildbits.hydro-1.0.0.jar](https://oss.sonatype.org/service/local/repositories/releases/content/org/wildbits/org.wildbits.hydro/1.0.0/org.wildbits.hydro-1.0.0.jar)
 
 ## Using the library
 
@@ -62,3 +72,5 @@ BigDecimal buoyancy = (waterDensity != null) ? solid.buoyancy(waterDensity) : nu
 ## Notes
 
 The library uses `java.math.BigDecimal` for its implementation, you may static import the method `org.wildbits.hydro.utils.Utils#big` as a syntactic sugar making building `BigDecimal` instances easy.
+
+This software is licensed under the [Apache License Version 2.0](https://github.com/wildbits/hydro/blob/master/LICENSE).
