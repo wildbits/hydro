@@ -10,7 +10,7 @@
 
     <groupId>org.wildbits</groupId>
     <artifactId>org.wildbits.hydro</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>bundle</packaging>
     <name>Wildbits Hydrostatic Library</name>
     <description>A nano hydrostatic library</description>
