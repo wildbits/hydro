@@ -21,6 +21,8 @@ var Solid = org.wildbits.hydro.Solid;
 var Composite = org.wildbits.hydro.Composite;
 var Cylinder = org.wildbits.hydro.Cylinder;
 var Seawater = org.wildbits.hydro.Seawater;
+var DryAir = org.wildbits.hydro.DryAir;
+var Gas = org.wildbits.hydro.Gas;
 
 var DELTA = 0.001;
 
@@ -173,6 +175,43 @@ describe('Composite', function(){
     describe('#buoyancy()', function() {
         it('should return the buoyancy', function(){
             assertEqualsWithDelta(3994, composite.buoyancy(1000));
+        });
+    });
+
+});
+
+describe('DryAir', function(){
+
+    var air = new DryAir();
+
+    describe('#density()', function() {
+        it('should return the density', function(){
+            assertEqualsWithDelta(1.2250, air.density(288.15, 101325));
+            assertEqualsWithDelta(1.1839, air.density(298.15, 101325));
+        });
+    });
+
+});
+
+describe('Gas', function() {
+
+    var gas = new Gas(1.2, 0.012, 230);
+
+    describe('#density()', function() {
+        it('should return the density', function() {
+            assertEqualsWithDelta(1.2, gas.density());
+        });
+    });
+
+    describe('#mass()', function() {
+        it('should return the mass', function() {
+            assertEqualsWithDelta(3.312, gas.mass());
+        });
+    });
+
+    describe('#volume()', function() {
+        it('should return the volume', function() {
+            assertEqualsWithDelta(0.012, gas.volume());
         });
     });
 

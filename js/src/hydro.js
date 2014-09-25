@@ -41,12 +41,12 @@ org.wildbits.hydro = (function () {
     };
 
     /**
-     * Represents a solid cylinder filled with a gaz under pressure.
+     * Represents a solid cylinder filled with a gas under pressure.
      *
      * @param {number} capacity The capacity of the cylinder in {@code m^3}
      * @param {number} density The density of the cylinder material in {@code kg•m^-3}
      * @param {number} mass1 The mass of the cylinder material in {@code kg}
-     * @param {number} mass2 The mass of the gaz contained in the cylinder in {@code kg}
+     * @param {number} mass2 The mass of the gas contained in the cylinder in {@code kg}
      */
     var Cylinder = function(capacity, density, mass1, mass2) {
 
@@ -61,7 +61,7 @@ org.wildbits.hydro = (function () {
         };
 
         /**
-         * @return {number} The mass of the cylinder and its gaz in {@code kg}
+         * @return {number} The mass of the cylinder and its gas in {@code kg}
          */
         this.mass = function() {
             return mass1 + mass2;
@@ -132,6 +132,63 @@ org.wildbits.hydro = (function () {
 
     Composite.prototype.buoyancy = buoyancy;
     Composite.prototype.density = density;
+
+    /**
+     * Represent an amount of gas at a given pressure.
+     *
+     * @param {number} density The density of the gas at the given pressure in {@code kg•m^-3}
+     * @param {number} volume The volume of the gas in {@code m^3}
+     * @param {number} pressure The pressure of the gas in {@code Pa}
+     */
+    var Gas = function (density, volume, pressure) {
+
+        /**
+         * @return {number} The mass of the gas in {@code kg}
+         */
+        this.mass = function () {
+            return density * volume * pressure;
+        };
+
+        /**
+         * @return {number} The volume of the gas in {@code m^3}
+         */
+        this.volume = function () {
+            return volume;
+        };
+
+        /**
+         * @return {number} density The density of the gas in {@code kg•m^-3}
+         */
+        this.density = function () {
+            return density;
+        };
+
+    };
+
+    /**
+     * Represent dry air.
+     */
+    var DryAir = function() {
+
+        /**
+         * Specific gas constant for dry air.
+         */
+        var R_DRY_AIR = 287.058;
+
+        /**
+         * Return the density of dry air at a given pressure and temperature.
+         *
+         * The density is computed using the ideal gas law.
+         *
+         * @param {number} pressure absolute pressure of the dry air in {@code Pa}
+         * @param {number} temperature absolute temperature of the dry air in {@code K}
+         * @return {number} The density in {@code kg•m^-3} or {@code null} if undefined
+         */
+        this.density = function(temperature, pressure) {
+            return pressure / (R_DRY_AIR * temperature);
+        };
+
+    };
 
     /**
      * Represent salt water.
@@ -211,6 +268,8 @@ org.wildbits.hydro = (function () {
 
         Cylinder  : Cylinder,
         Solid     : Solid,
+        DryAir    : DryAir,
+        Gas       : Gas,
         Composite : Composite,
         Seawater  : Seawater
 
