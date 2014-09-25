@@ -23,6 +23,7 @@ var Cylinder = org.wildbits.hydro.Cylinder;
 var Seawater = org.wildbits.hydro.Seawater;
 var DryAir = org.wildbits.hydro.DryAir;
 var Gas = org.wildbits.hydro.Gas;
+var Liquid = org.wildbits.hydro.Liquid;
 
 var DELTA = 0.001;
 
@@ -68,6 +69,30 @@ describe('Seawater', function(){
             assertEqualsWithDelta(1017.38596768, seawater.density(100, 0.08));
             assertEqualsWithDelta(1010.3778191928, seawater.density(110, 0.08));
             assertEqualsWithDelta(1003.0591342592, seawater.density(120, 0.08));
+        });
+    });
+
+});
+
+describe('Liquid', function() {
+
+    var liquid = new Liquid(1.03, 13.92);
+
+    describe('#density()', function() {
+        it('should return the density', function() {
+            assertEqualsWithDelta(1.03, liquid.density());
+        });
+    });
+
+    describe('#mass()', function() {
+        it('should return the mass', function() {
+            assertEqualsWithDelta(14.3376, liquid.mass());
+        });
+    });
+
+    describe('#volume()', function() {
+        it('should return the volume', function() {
+            assertEqualsWithDelta(13.92, liquid.volume());
         });
     });
 

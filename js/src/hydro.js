@@ -166,6 +166,38 @@ org.wildbits.hydro = (function () {
     };
 
     /**
+     * Represent an amount of liquid with the given density.
+     *
+     * @param {number} density The density of the liquid
+     * @param {number} volume The volume of the liquid
+     */
+    var Liquid = function (density, volume) {
+
+        /**
+         * @return {number} The mass of the liquid in {@code kg}
+         */
+        this.mass = function () {
+            return density * volume;
+        };
+
+        /**
+         * @return {number} The volume of the liquid in {@code m^3}
+         */
+        this.volume = function () {
+            return volume;
+        };
+
+        /**
+         * @return {number} density The density of the liquid in {@code kg•m^-3}
+         */
+        this.density = function () {
+            return density;
+        };
+
+
+    };
+
+    /**
      * Represent dry air.
      */
     var DryAir = function() {
@@ -271,7 +303,8 @@ org.wildbits.hydro = (function () {
         DryAir    : DryAir,
         Gas       : Gas,
         Composite : Composite,
-        Seawater  : Seawater
+        Seawater  : Seawater,
+        Liquid    : Liquid
 
     };
 
